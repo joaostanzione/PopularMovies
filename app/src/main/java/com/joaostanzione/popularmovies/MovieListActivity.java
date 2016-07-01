@@ -20,7 +20,7 @@ import com.joaostanzione.popularmovies.dummy.DummyContent;
 import java.util.List;
 
 /**
- * An activity representing a list of Movies. This activity
+ * An activity representing a list of Movie. This activity
  * has different presentations for handset and tablet-size devices. On
  * handsets, the activity presents a list of items, which when touched,
  * lead to a {@link MovieDetailActivity} representing

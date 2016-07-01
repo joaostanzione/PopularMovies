@@ -12,7 +12,7 @@
     tools:context="com.joaostanzione.popularmovies.MovieListActivity">
 
     <!--
-    This layout is a two-pane layout for the Movies
+    This layout is a two-pane layout for the Movie
     master/detail flow.
     
     -->
