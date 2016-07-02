@@ -1,11 +1,16 @@
 
 package com.joaostanzione.popularmovies.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
 
+    @SerializedName("poster_path")
+    @Expose
     private String posterPath;
     private Boolean adult;
     private String overview;

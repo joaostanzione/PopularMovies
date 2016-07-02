@@ -8,13 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.joaostanzione.popularmovies.model.MoviesResponse;
-import com.joaostanzione.popularmovies.service.MovieService;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 /**
  * An activity representing a single Movie detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
@@ -29,22 +22,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
-
-        MovieService.MovieAPI api = new MovieService().getAPI();
-        Call<MoviesResponse> call = api.getPopularMovies();
-        call.enqueue(new Callback<MoviesResponse>() {
-            @Override
-            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
-                MoviesResponse moviesResponse = response.body();
-                moviesResponse.getResults();
-            }
-
-            @Override
-            public void onFailure(Call<MoviesResponse> call, Throwable t) {
-
-            }
-        });
-
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();

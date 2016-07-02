@@ -1,5 +1,6 @@
 package com.joaostanzione.popularmovies.service;
 
+import com.google.gson.Gson;
 import com.joaostanzione.popularmovies.BuildConfig;
 import com.joaostanzione.popularmovies.model.MoviesResponse;
 
@@ -22,7 +23,7 @@ public class MovieService {
 
           Retrofit retrofit = new Retrofit.Builder()
                .baseUrl(baseUrl)
-               .addConverterFactory(GsonConverterFactory.create())
+               .addConverterFactory(GsonConverterFactory.create(new Gson()))
                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                .build();
 
