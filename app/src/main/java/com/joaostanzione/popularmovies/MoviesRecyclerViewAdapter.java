@@ -1,6 +1,9 @@
 package com.joaostanzione.popularmovies;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,14 +15,14 @@ import com.joaostanzione.popularmovies.model.Movie;
 
 import java.util.List;
 
-public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+public class MoviesRecyclerViewAdapter
+            extends RecyclerView.Adapter<MoviesRecyclerViewAdapter.ViewHolder> {
 
     private final List<Movie> mMovies;
     private final boolean mTwoPane;
     private final AppCompatActivity mActivity;
 
-    public SimpleItemRecyclerViewAdapter(List<Movie> movies, boolean twoPane, AppCompatActivity activity) {
+    public MoviesRecyclerViewAdapter(List<Movie> movies, boolean twoPane, AppCompatActivity activity) {
             mMovies = movies;
         this.mTwoPane = twoPane;
         this.mActivity = activity;
@@ -35,16 +38,16 @@ public class SimpleItemRecyclerViewAdapter
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mMovie = mMovies.get(position);
-            //TODO: baseUrl
+            //TODO: baseUrl http://image.tmdb.org/t/p/w185//yySmUG29VgDdCROb9eer9L2kkKX.jpg
             Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+mMovies.get(position).getPosterPath());
             holder.mImageView.setImageURI(uri);
 
-            /*holder.mView.setOnClickListener(new View.OnClickListener() {
+            holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        //arguments.putString(MovieDetailFragment.ARG_ITEM_ID, holder.mMovie.id);
+                        arguments.putSerializable(MovieDetailFragment.ARG_SELECTED_MOVIE, holder.mMovie);
                         MovieDetailFragment fragment = new MovieDetailFragment();
                         fragment.setArguments(arguments);
                         mActivity.getSupportFragmentManager().beginTransaction()
@@ -53,12 +56,12 @@ public class SimpleItemRecyclerViewAdapter
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, MovieDetailActivity.class);
-                        //intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mMovie.id);
+                        intent.putExtra(MovieDetailFragment.ARG_SELECTED_MOVIE, holder.mMovie);
 
                         context.startActivity(intent);
                     }
                 }
-            });*/
+            });
         }
 
         @Override
@@ -70,7 +73,6 @@ public class SimpleItemRecyclerViewAdapter
             public final View mView;
             public final SimpleDraweeView mImageView;
             public Movie mMovie;
-
             public ViewHolder(View view) {
                 super(view);
                 mView = view;

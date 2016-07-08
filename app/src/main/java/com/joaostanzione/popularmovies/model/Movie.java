@@ -4,26 +4,41 @@ package com.joaostanzione.popularmovies.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Movie {
+public class Movie implements Serializable {
 
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
     private Boolean adult;
     private String overview;
+    @SerializedName("release_date")
+    @Expose
     private String releaseDate;
+    @SerializedName("genre_ids")
+    @Expose
     private List<Long> genreIds = new ArrayList<Long>();
     private Long id;
+    @SerializedName("original_title")
+    @Expose
     private String originalTitle;
+    @SerializedName("original_language")
+    @Expose
     private String originalLanguage;
     private String title;
+    @SerializedName("backdrop_path")
+    @Expose
     private String backdropPath;
     private Double popularity;
+    @SerializedName("vote_count")
+    @Expose
     private Long voteCount;
     private Boolean video;
+    @SerializedName("vote_average")
+    @Expose
     private Double voteAverage;
 
     public String getPosterPath() {
