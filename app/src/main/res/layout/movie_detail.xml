@@ -1,9 +1,22 @@
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/movie_detail"
-    style="?android:attr/textAppearanceLarge"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:textIsSelectable="true"
-    tools:context="com.joaostanzione.popularmovies.MovieDetailFragment" />
+    android:orientation="vertical"
+    tools:context="com.joaostanzione.popularmovies.MovieDetailFragment" >
+
+    <TextView
+        android:id="@+id/movie_detail"
+        android:text="description"
+        style="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        tools:context="com.joaostanzione.popularmovies.MovieDetailFragment" />
+
+
+
+</LinearLayout>
+
+    <!-- release date, movie poster, vote average-->
