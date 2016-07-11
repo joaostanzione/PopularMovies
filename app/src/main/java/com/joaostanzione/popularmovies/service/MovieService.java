@@ -9,6 +9,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public class MovieService {
 
@@ -35,7 +36,7 @@ public class MovieService {
      }
 
      public interface MovieAPI {
-          @GET("movie/popular?api_key="+ BuildConfig.TMDB_API_KEY)
-          Call<MoviesResponse> getPopularMovies();
+          @GET("movie/{criteria}?api_key=" + BuildConfig.TMDB_API_KEY)
+          Call<MoviesResponse> getPopularMovies(@Path("criteria") String criteria);
      }
 }

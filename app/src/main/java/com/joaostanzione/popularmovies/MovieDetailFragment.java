@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.joaostanzione.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -49,14 +51,20 @@ public class MovieDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.movie_detail, container, false);
 
         if (mSelectedMovie != null) {
+            //TODO data bind
             ((TextView) rootView.findViewById(R.id.movie_detail)).setText(mSelectedMovie.getOverview());
+            ((TextView) rootView.findViewById(R.id.movie_rating)).setText(String.valueOf(mSelectedMovie.getVoteAverage()));
+            ((TextView) rootView.findViewById(R.id.release_date)).setText(mSelectedMovie.getReleaseDate());
+            //TODO: baseUrl
+            Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+mSelectedMovie.getPosterPath());
+            ((SimpleDraweeView) rootView.findViewById(R.id.image_view_poster_detail)).setImageURI(uri);
         }
 
         return rootView;
     }
 
     private void setCollapsingToolbarImage(String url){
-        Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w185/"+url).into(new Target() {
+        Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w500/"+url).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 Drawable backDropDrawable = new BitmapDrawable(getContext().getResources(), bitmap);

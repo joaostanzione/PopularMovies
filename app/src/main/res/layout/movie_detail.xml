@@ -1,21 +1,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
     tools:context="com.joaostanzione.popularmovies.MovieDetailFragment" >
 
-    <TextView
-        android:id="@+id/movie_detail"
-        android:text="description"
-        style="?android:attr/textAppearanceLarge"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/img_star"/>
+
+        <TextView
+            android:id="@+id/movie_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5.0"
+            android:textSize="32sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/image_star"/>
+
+
+        <TextView
+            android:id="@+id/release_date"
+            android:text="15/06/2016"
+            android:layout_alignParentRight="true"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textIsSelectable="true"
-        tools:context="com.joaostanzione.popularmovies.MovieDetailFragment" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_view_poster_detail"
+            android:layout_width="145dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            fresco:viewAspectRatio="0.665"
+            fresco:actualImageScaleType="fitCenter"
+            fresco:placeholderImage="@drawable/img_placeholderplaceholder" />
 
+        <TextView
+            android:id="@+id/movie_detail"
+            android:text="description"
+            style="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textIsSelectable="true" />
+
+    </LinearLayout>
 
 </LinearLayout>
 

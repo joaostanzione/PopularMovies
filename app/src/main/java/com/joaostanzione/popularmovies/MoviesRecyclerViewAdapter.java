@@ -38,7 +38,7 @@ public class MoviesRecyclerViewAdapter
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mMovie = mMovies.get(position);
-            //TODO: baseUrl http://image.tmdb.org/t/p/w185//yySmUG29VgDdCROb9eer9L2kkKX.jpg
+            //TODO: baseUrl .... http://image.tmdb.org/t/p/w185//yySmUG29VgDdCROb9eer9L2kkKX.jpg
             Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+mMovies.get(position).getPosterPath());
             holder.mImageView.setImageURI(uri);
 
@@ -76,7 +76,7 @@ public class MoviesRecyclerViewAdapter
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mImageView = (SimpleDraweeView) view.findViewById(R.id.image_view_poster_thumb);
+                mImageView = (SimpleDraweeView) view.findViewById(R.id.image_view_poster_list);
             }
 
         }
