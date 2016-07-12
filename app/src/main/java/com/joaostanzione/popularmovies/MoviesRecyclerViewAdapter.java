@@ -33,6 +33,7 @@ public class MoviesRecyclerViewAdapter
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.movie_list_content, parent, false);
             return new ViewHolder(view);
+            //TODO criar logs
         }
 
         @Override
@@ -43,6 +44,7 @@ public class MoviesRecyclerViewAdapter
             holder.mImageView.setImageURI(uri);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
@@ -78,6 +80,5 @@ public class MoviesRecyclerViewAdapter
                 mView = view;
                 mImageView = (SimpleDraweeView) view.findViewById(R.id.image_view_poster_list);
             }
-
         }
     }

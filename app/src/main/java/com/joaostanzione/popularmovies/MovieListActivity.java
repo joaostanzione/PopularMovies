@@ -28,6 +28,7 @@ public class MovieListActivity extends AppCompatActivity {
     private boolean mTwoPane;
     private List<Movie> mMovies;
     private RecyclerView mRecyclerView;
+    private MoviesRecyclerViewAdapter mMoviesRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class MovieListActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PrefsUtils.getPrefs(this);
         String criteria = sharedPref.getString(PrefsUtils.KEY_CRITERIA, PrefsUtils.CRITERIA_DEFAULT_VALUE);
 
+        setupRecyclerView();
         fetchMovies(criteria);
 
     }
@@ -64,7 +66,7 @@ public class MovieListActivity extends AppCompatActivity {
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 MoviesResponse moviesResponse = response.body();
                 mMovies = moviesResponse.getResults();
-                setupRecyclerView();
+                mMoviesRecyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -89,8 +91,9 @@ public class MovieListActivity extends AppCompatActivity {
             GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
             mRecyclerView.setLayoutManager(layoutManager);
         }
+        mMoviesRecyclerViewAdapter = new MoviesRecyclerViewAdapter(mMovies, mTwoPane, this);
 
-        mRecyclerView.setAdapter(new MoviesRecyclerViewAdapter(mMovies, mTwoPane, this));
+        mRecyclerView.setAdapter(mMoviesRecyclerViewAdapter);
     }
 
     @Override
@@ -103,6 +106,8 @@ public class MovieListActivity extends AppCompatActivity {
         } else {
             getMenuInflater().inflate(R.menu.popular, menu);
         }
+
+        //invalidate options menu
 
         return true;
     }
