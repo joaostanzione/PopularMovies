@@ -63,6 +63,7 @@ public class MovieDetailFragment extends Fragment {
     }
 
     private void setCollapsingToolbarImage(String url){
+        //TODO: Base url
         Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w500/"+url).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -76,12 +77,12 @@ public class MovieDetailFragment extends Fragment {
 
             @Override
             public void onBitmapFailed(Drawable errorDrawable) {
-
+                //TODO
             }
 
             @Override
             public void onPrepareLoad(Drawable placeHolderDrawable) {
-
+                //TODO
             }
         });
     }

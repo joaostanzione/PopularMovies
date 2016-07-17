@@ -35,6 +35,7 @@ public class MoviesRecyclerViewAdapter
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.movie_list_content, parent, false);
             return new ViewHolder(view);
+            //TODO criar logs
         }
 
         @Override
@@ -44,6 +45,7 @@ public class MoviesRecyclerViewAdapter
             Picasso.with(mActivity).load("http://image.tmdb.org/t/p/w185/"+mMovies.get(position).getPosterPath()).into(holder.mImageView);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
@@ -84,6 +86,5 @@ public class MoviesRecyclerViewAdapter
                 mView = view;
                 mImageView = (ImageView) view.findViewById(R.id.image_view_poster);
             }
-
         }
     }
