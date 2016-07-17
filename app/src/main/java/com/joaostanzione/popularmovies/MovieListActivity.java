@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.joaostanzione.popularmovies.model.Movie;
 import com.joaostanzione.popularmovies.model.MoviesResponse;
 import com.joaostanzione.popularmovies.service.MovieService;
@@ -33,9 +32,6 @@ public class MovieListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
-
-        //TODO: Colocar no application?
-        Fresco.initialize(getApplicationContext());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

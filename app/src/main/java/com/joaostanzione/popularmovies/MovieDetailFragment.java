@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,9 +11,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.joaostanzione.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -55,9 +54,9 @@ public class MovieDetailFragment extends Fragment {
             ((TextView) rootView.findViewById(R.id.movie_detail)).setText(mSelectedMovie.getOverview());
             ((TextView) rootView.findViewById(R.id.movie_rating)).setText(String.valueOf(mSelectedMovie.getVoteAverage()));
             ((TextView) rootView.findViewById(R.id.release_date)).setText(mSelectedMovie.getReleaseDate());
+            ImageView imageViewPoster = (ImageView) rootView.findViewById(R.id.image_view_poster);
             //TODO: baseUrl
-            Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+mSelectedMovie.getPosterPath());
-            ((SimpleDraweeView) rootView.findViewById(R.id.image_view_poster_detail)).setImageURI(uri);
+            Picasso.with(getActivity()).load("http://image.tmdb.org/t/p/w185/"+mSelectedMovie.getPosterPath()).into(imageViewPoster);
         }
 
         return rootView;

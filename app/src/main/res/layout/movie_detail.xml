@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
@@ -45,14 +44,12 @@
         android:orientation="horizontal"
         android:layout_marginTop="16dp">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/image_view_poster_detail"
+        <ImageView
+            android:id="@+id/image_view_poster"
             android:layout_width="145dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            fresco:viewAspectRatio="0.665"
-            fresco:actualImageScaleType="fitCenter"
-            fresco:placeholderImage="@drawable/img_placeholderplaceholder" />
+            android:layout_height="218dp"
+            android:transitionName="movie_poster"
+            android:layout_marginRight="16dp" />
 
         <TextView
             android:id="@+id/movie_detail"

@@ -2,16 +2,18 @@ package com.joaostanzione.popularmovies;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.joaostanzione.popularmovies.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -39,8 +41,7 @@ public class MoviesRecyclerViewAdapter
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mMovie = mMovies.get(position);
             //TODO: baseUrl .... http://image.tmdb.org/t/p/w185//yySmUG29VgDdCROb9eer9L2kkKX.jpg
-            Uri uri = Uri.parse("http://image.tmdb.org/t/p/w185/"+mMovies.get(position).getPosterPath());
-            holder.mImageView.setImageURI(uri);
+            Picasso.with(mActivity).load("http://image.tmdb.org/t/p/w185/"+mMovies.get(position).getPosterPath()).into(holder.mImageView);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -57,8 +58,13 @@ public class MoviesRecyclerViewAdapter
                         Context context = v.getContext();
                         Intent intent = new Intent(context, MovieDetailActivity.class);
                         intent.putExtra(MovieDetailFragment.ARG_SELECTED_MOVIE, holder.mMovie);
-
-                        context.startActivity(intent);
+                        ActivityOptionsCompat options = ActivityOptionsCompat.
+                                makeSceneTransitionAnimation(mActivity, holder.mImageView, "movie_poster");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            context.startActivity(intent, options.toBundle());
+                        } else {
+                            context.startActivity(intent);
+                        }
                     }
                 }
             });
@@ -71,12 +77,12 @@ public class MoviesRecyclerViewAdapter
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final SimpleDraweeView mImageView;
+            public final ImageView mImageView;
             public Movie mMovie;
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mImageView = (SimpleDraweeView) view.findViewById(R.id.image_view_poster_list);
+                mImageView = (ImageView) view.findViewById(R.id.image_view_poster);
             }
 
         }
